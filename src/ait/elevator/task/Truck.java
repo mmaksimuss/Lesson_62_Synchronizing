@@ -18,12 +18,20 @@ public class Truck implements Runnable {
     @Override
     public void run() {
         for (int i = 0; i < nRaces; i++) {
-            if (hashCode() % 2 == 0) {
+
+        if (hashCode() % 2 == 0) {
                 synchronized (monitor1) {
                     elevator[0].add(capasity / 2);
                 }
                 synchronized (monitor2) {
                     elevator[1].add(capasity / 2);
+                }
+            }else {
+                    synchronized (monitor2) {
+                        elevator[1].add(capasity / 2);
+                    }
+                synchronized (monitor1){
+                    elevator[0].add(capasity/2);
                 }
             }
         }
